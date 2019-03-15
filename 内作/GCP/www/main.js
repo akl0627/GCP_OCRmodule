@@ -12,7 +12,7 @@
 // limitations under the License.
 
 'use strict';
-
+/**TODO：APIキー使わない方法で実装（割り当て未）*/
 var CV_URL = 'https://vision.googleapis.com/v1/images:annotate?key=' + window.apiKey;
 
 $(function () {
@@ -21,7 +21,7 @@ $(function () {
 
 /**
  * 'submit' event handler - reads the image bytes and sends it to the Cloud
- * Vision API.
+ * Vision API. 【対象ファイルを変換してOCR処理】
  */
 function uploadFiles (event) {
   event.preventDefault(); // Prevent the default form post
@@ -38,8 +38,10 @@ function uploadFiles (event) {
  */
 function processFile (event) {
   var content = event.target.result;
-  /* 20181218 debug */
-  /*pdfは未対応*/
+
+  /**TODO：pdfの場合、ページ分割して画像jpg変換する処理入れる(工藤)*/
+  
+  /**TODO：画像が複数枚の場合の繰り返し処理追加(石川)*/
   if (content.indexOf('jpeg')===11){    /*jpegの場合*/
 	  var encordedValue =content.replace('data:image/jpeg;base64,', '')
   }else if(content.indexOf('png')=== 11){   /*pngの場合*/
@@ -47,14 +49,14 @@ function processFile (event) {
   }else if(content.indexOf('bmp')=== 11){    /*bmpの場合*/
 	  var encordedValue =content.replace('data:image/bmp;base64,', '')
   }else{
-	  /*何もしないが、ゆくゆくエラー表示させたい*/
+	  /**何もしないが、ゆくゆくエラー表示させたい*/
   }
-  sendFileToCloudVision(encordedValue);
+  sendFileToCloudVision(encordedValue);　  /**TODO：ここも複数枚分処理*/
 }
 
 /**
  * Sends the given file contents to the Cloud Vision API and outputs the
- * results.
+ * results.【OCR結果受け取るところ】
  */
 function sendFileToCloudVision (content) {
   var type = $('#inputArea [name=type]').val();
@@ -86,15 +88,11 @@ function sendFileToCloudVision (content) {
  * Displays the results.
  */
 function displayJSON (data) {
-  /*ここ書き換える：description(必須)　のみ抜出し
-   * original code is below*
-   
-  var contents = JSON.stringify(data, null, 4);
-  */ 
   var wk_contents = JSON.stringify(data, null, 4);
   var wk_parseJson = JSON.parse(wk_contents)
   var contents = wk_parseJson.responses[0].fullTextAnnotation.text
-  /*evt.resultsにOCR結果を代入*/
+  /**evt.resultsにOCR結果を代入*/
+  /**TODO：結果を順次追加する（工藤）*/
   $('#results').text(contents);
   var evt = new Event('results-displayed');
   evt.results = contents;
