@@ -1,0 +1,38 @@
+html,body {
+	height:100%;
+}
+body {
+	margin:0 auto; 
+	font-family:"ƒƒCƒŠƒI", Meiryo,"ƒqƒ‰ƒMƒmŠpƒS Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "‚l‚r ‚oƒSƒVƒbƒN", "MS PGothic", sans-serif; 
+	-webkit-text-size-adjust: 100%; 
+	background:#f2f2f2;
+	overflow-x:hidden;
+	overflow-y:hidden; 
+}
+
+
+
+.ocr_header_box {
+    background-color: #1abc9c;
+    border:1px solid #1abc9c;
+    color: #ffffff;
+    margin:0px auto;
+    text-align: center;
+    width: 100%;
+}  
+
+.ocr_header_box h1 {
+    font-size:100%;
+    padding:3px;
+    margin:5px auto;
+}
+
+
+div#comment001{
+    width: 650px;
+    height: 60px;
+    margin: 0 0 0 110px;
+    padding:20px 0 0 0;
+    color: #000;
+    font-size: 60pt;
+}
