@@ -4,8 +4,8 @@ threadsafe: true
 
 handlers:
 - url: /
-  static_files: www/index.html
-  upload: www/index.html
+  static_files: www/index.aspx
+  upload: www/index.aspx
 
 - url: /(.*)
   static_files: www/\1
